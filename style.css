@@ -1,0 +1,57 @@
+:root {
+    --main-color: #0a0a23;
+    --text-color: #fff;
+}
+
+body {
+    background-color: var(--main-color);
+    color: var(--main-color);
+    padding-top: 30px;
+    font-family: "Arial";
+}
+
+main {
+    padding: 10px;
+    max-width: 50%;
+    margin: auto;
+    background-color: #fff;
+}
+
+main > div {
+    margin-bottom: 15px;
+    border: 1px solid var(--main-color);
+    padding: 10px;
+}
+
+#actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}   
+
+button {
+    cursor: pointer;
+    color: #0a0a23;
+    background-image: linear-gradient(#fecc4c, #ffac33);
+    border: 3px solid #feac32;
+    padding: 5px;
+    flex-basis: 100%;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background-image: linear-gradient(#feac32, #ff8e1a);
+}
+
+button:active {
+    background-image: linear-gradient(#ff8e1a, #ff700a); 
+}
+
+#monsterInfo {
+    display: none;
+}
+
+#text {
+    color: var(--text-color);
+    background-color: var(--main-color);
+}

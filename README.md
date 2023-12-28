@@ -1,0 +1,2 @@
+Welcome to Dragon Repeller
+This project is a improved version of [Dragon Repeller](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/learn-basic-javascript-by-building-a-role-playing-game/step-1) from the [the javascript and algorithms course](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/) from freecodecamp.org
