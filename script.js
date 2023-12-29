@@ -1,27 +1,3 @@
-class Location{
-    name;
-    buttonTexts;
-    buttonFunctions;
-    text;
-
-    constructor(name, buttonTexts, buttonFunctions, text) {
-        this.name = name;
-        this.buttonTexts = buttonTexts;
-        this.buttonFunctions = buttonFunctions;
-        this.text = text;
-    }
-}
-class Weapon {
-    name;
-    damage;
-
-    constructor(name, damage) {
-        this.name = name;
-        this.damage = damage;
-    }
-}
-
-
 const weapons = [
     new Weapon(
         "stick",
