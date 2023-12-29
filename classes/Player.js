@@ -6,3 +6,5 @@ class Player {
     level;
     exp;
 }
+
+export default Player

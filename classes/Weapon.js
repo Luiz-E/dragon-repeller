@@ -7,3 +7,5 @@ class Weapon {
         this.damage = damage;
     }
 }
+
+export default Weapon

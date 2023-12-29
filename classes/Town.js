@@ -7,3 +7,5 @@ class Town {
         text.innerText = location.text
     }
 }
+
+export default Town

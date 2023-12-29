@@ -11,3 +11,5 @@ class Location{
         this.text = text;
     }
 }
+
+export default Location
