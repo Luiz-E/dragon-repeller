@@ -1,13 +1,13 @@
 class Location{
     name;
     buttonTexts;
-    buttonFunctions;
+    nextLocation;
     text;
 
-    constructor(name, buttonTexts, buttonFunctions, text) {
+    constructor(name, buttonTexts, nextLocation, text) {
         this.name = name;
         this.buttonTexts = buttonTexts;
-        this.buttonFunctions = buttonFunctions;
+        this.nextLocation = nextLocation;
         this.text = text;
     }
 }

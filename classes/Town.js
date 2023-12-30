@@ -1,10 +1,14 @@
+import locations from "../data/locationData.js"
+import {actions} from "../ui/uiData.js"
+
 class Town {
-    changeScenery(location) {
-        for (let i = 0; i < actions.length; i++) {
-            actions[i].innerText = location.buttonTexts[i]
-            actions[i].onclick = location.buttonFunctions[i]
-        }
-        text.innerText = location.text
+    static changeScenery(nextLocation) {
+        const location = locations.find(loc => loc.name === nextLocation)
+        console.log(location)
+        actions.forEach((action, i) => {
+            action.innerText = location.buttonTexts[i]
+            action.nextLocation = location.nextLocation[i]
+        })
     }
 }
 
