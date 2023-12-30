@@ -15,7 +15,7 @@ const locations = [
             "hunting grounds",
             "dragon nest"
         ],
-        "You are in the town square"
+        "You are in the town square."
     ), new Location (
         "store",
         [
@@ -30,7 +30,7 @@ const locations = [
             "",
             "town"
         ],
-        "You are in the town square"
+        "You are in the store."
     ), new Location (
         "church",
         [
