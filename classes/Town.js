@@ -45,8 +45,8 @@ class Town {
 
     static performChurchAction() {
         actions[0].onclick = () => player.heal();
-        actions[1].onclick = () => player.getStrengthBlessing();
-        actions[2].onclick = () => player.getBodyBlessing();
+        actions[1].onclick = () => player.getBlessing("strength");
+        actions[2].onclick = () => player.getBlessing("iron body");
         actions[3].onclick = () => Town.changeScenery("town");
     }
 
