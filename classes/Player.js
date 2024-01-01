@@ -1,5 +1,3 @@
-import updateBasicInfo from "../ui/updatePlayerInfo.js";
-
 class Player {
     maxHealth;
     health;

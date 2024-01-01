@@ -1,11 +1,12 @@
-class Weapon {
-    name;
+class Weapon extends Item{
+    
     damage;
 
-    constructor(name, damage) {
-        this.name = name;
+    constructor(name, type, damage) {
+        super(name, type)
         this.damage = damage;
     }
+
 }
 
 export default Weapon
