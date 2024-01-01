@@ -39,9 +39,9 @@ class Player {
         if (this.gold >= 30) {
             this.health += 30;
             this.gold -= 30;
-            updateBasicInfo("You heal your wounds.");
+            return "You heal your wounds.";
         } else {
-            updateBasicInfo("You don't have enough money.");
+            return "You don't have enough money.";
         }
     }
 
@@ -54,11 +54,11 @@ class Player {
             }
             this.isBlessed = true;
             this.gold -= 50;
-            updateBasicInfo("You feel your body getting stronger.")
+            return "You feel your body getting stronger.";
         } else if (this.gold < 50) {
-            updateBasicInfo("You don't have enough money.")
+            return "You don't have enough money.";
         } else {
-            updateBasicInfo("You are already blessed.")
+            return "You are already blessed.";
         }
     }
 

@@ -1,6 +1,7 @@
 import locations from "../data/locationData.js"
 import player from "../script.js"
 import {actions, text} from "../ui/uiData.js"
+import updateBasicInfo from "../ui/updatePlayerInfo.js"
 
 class Town {
     static changeScenery(nextLocation) {
@@ -44,9 +45,18 @@ class Town {
     }
 
     static performChurchAction() {
-        actions[0].onclick = () => player.heal();
-        actions[1].onclick = () => player.getBlessing("strength");
-        actions[2].onclick = () => player.getBlessing("iron body");
+        actions[0].onclick = () => {
+            const message = player.heal();
+            updateBasicInfo(message)
+        };
+        actions[1].onclick = () => {
+            const message = player.getBlessing("strength")
+            updateBasicInfo(message);
+        };
+        actions[2].onclick = () => {
+            const message = player.getBlessing("iron body")
+            updateBasicInfo(message);
+        };
         actions[3].onclick = () => Town.changeScenery("town");
     }
 
