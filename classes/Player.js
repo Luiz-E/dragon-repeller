@@ -122,7 +122,7 @@ class Player {
     }
 
     removeFromInventory(item) {
-        document.querySelector("#text").innerText = item
+        this.inventory[item] = null
     }
 
 }

@@ -16,7 +16,8 @@ const createInventory = () => {
         div.id = "inventory-space";
         div.index = i
         div.addEventListener("click", () => {
-            player.removeFromInventory(div.index)
+            div.style.backgroundColor = "#fff";
+            player.removeFromInventory(div.index);
         })
         inventory.appendChild(div);
     }
