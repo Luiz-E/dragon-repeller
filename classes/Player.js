@@ -1,36 +1,73 @@
+import { updateInventory } from "../ui/updatePlayerInfo.js";
+import { Type as ItemType, potions, armors, weapons } from "../data/itemData.js";
+
 class Player {
     maxHealth;
     health;
     gold;
-    weaponEquipped;
     damage;
     damageTaken;
     level;
     exp;
     isBlessed;
+    inventory;
 
     constructor() {
         this.maxHealth = 100;
         this.health = 100;
-        this.gold = 50;
-        this.weaponEquipped = 1;
+        this.gold = 5000;
         this.damage = 1;
         this.damageTaken = 1;
         this.level = 0;
         this.exp = 0;
-        this.isBlessed = false
+        this.isBlessed = false        
+        this.inventory = []
+        for (let i = 0; i < 15; i++) {
+            this.inventory[i] = null
+        }
     }
 
-    buyHealthPotion = () => {
-        console.log("bougth a health potion");
+    freeSpace() {
+        for (let i = 0; i < 15; i++) {
+            if (this.inventory[i] == null) {
+                return i;
+            }
+        }
+        return -1;
     }
 
-    buyWeapon = () => {
-        console.log("bougth a weapon");
-    }
+    buyItem = (itemType) => {
+        const freeSpace = this.freeSpace()
+        if (freeSpace == -1) {
+            return {
+                sucess: false,
+                message: "Your inventory is full.",
+                itemAdd: null,
+            };
+        }
+        if ((itemType == ItemType.Armor || itemType == ItemType.Weapon) && this.gold >= 50) {
+            this.gold -= 50;
+            return {
+                sucess: true,
+                message: `You bought a new ${itemType}.`,
+                itemAdded: this.addToInventory(itemType, freeSpace),
+            };
+        }
+        if (itemType == ItemType.Potion && this.gold >= 30) {
+            this.gold -= 30;
+            return {
+                sucess: true,
+                message: `You bought a new ${itemType}.`,
+                itemAdded: this.addToInventory(itemType, freeSpace),
+            };
+        }
 
-    buyArmor = () => {
-        console.log("bougth an armor");
+        return {
+            sucess: false,
+            message: `You don't have enough money.`,
+            itemAdd: null,
+        };
+        
     }
 
     heal = () => {
@@ -58,6 +95,34 @@ class Player {
         } else {
             return "You are already blessed.";
         }
+    }
+
+    addToInventory(item, freeSpace) {
+        if (item == ItemType.Potion) {
+            this.inventory[freeSpace] = potions[0];
+            return {
+                item: potions[0],
+                position: freeSpace,
+            };
+        } else if (item == ItemType.Weapon) {
+            this.inventory[freeSpace] = weapons[0];
+            return {
+                item: weapons[0],
+                position: freeSpace
+            };
+        } else {
+            this.inventory[freeSpace] = armors[0];
+            return {
+                item: armors[0],
+                position: freeSpace
+            };
+        }
+
+        
+    }
+
+    removeFromInventory(item) {
+        document.querySelector("#text").innerText = item
     }
 
 }

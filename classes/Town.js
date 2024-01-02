@@ -1,7 +1,8 @@
 import locations from "../data/locationData.js"
 import player from "../script.js"
 import {actions, text} from "../ui/uiData.js"
-import updateBasicInfo from "../ui/updatePlayerInfo.js"
+import {updateBasicInfo, updateInventory} from "../ui/updatePlayerInfo.js"
+import {Type} from "../data/itemData.js"
 
 class Town {
     static changeScenery(nextLocation) {
@@ -38,9 +39,18 @@ class Town {
     }
 
     static performStoreAction() {
-        actions[0].onclick = () => player.buyHealthPotion();
-        actions[1].onclick = () => player.buyWeapon();
-        actions[2].onclick = () => player.buyArmor();
+        actions[0].onclick = () => {
+            const result = player.buyItem(Type.Potion)
+            updateInventory(result)
+        };
+        actions[1].onclick = () => {
+            const result = player.buyItem(Type.Weapon)
+            updateInventory(result)
+        };
+        actions[2].onclick = () => {
+            const result = player.buyItem(Type.Armor);
+            updateInventory(result);
+        };
         actions[3].onclick = () => Town.changeScenery("town");
     }
 
