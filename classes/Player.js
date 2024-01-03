@@ -1,4 +1,5 @@
 import { Type as ItemType, potions, armors, weapons } from "../data/itemData.js";
+import locations from "../data/locationData.js";
 
 class Player {
     maxHealth;
@@ -10,6 +11,7 @@ class Player {
     exp;
     isBlessed;
     inventory;
+    actualLocation;
 
     constructor() {
         this.maxHealth = 100;
@@ -24,6 +26,7 @@ class Player {
         for (let i = 0; i < 15; i++) {
             this.inventory[i] = null
         }
+        this.actualLocation = locations.find(loc => loc.name === "town")
     }
 
     freeSpace() {

@@ -1,7 +1,7 @@
 import locations from "../data/locationData.js"
 import player from "../script.js"
 import {actions, text} from "../ui/uiData.js"
-import {updateBasicInfo, updateInventory} from "../ui/updatePlayerInfo.js"
+import {createInventoryActions, updateBasicInfo, updateInventory} from "../ui/updatePlayerInfo.js"
 import {Type} from "../data/itemData.js"
 
 class Town {
@@ -12,21 +12,26 @@ class Town {
             action.innerText = location.buttonTexts[i]
         })
 
-        Town.performAction(location.name)
+        Town.performAction(location)
 
         text.innerText = location.text
     }
 
-    static performAction(locationName) {
-        switch (locationName) {
+    static performAction(location) {
+        player.actualLocation = location
+
+        switch (location.name) {
             case "town":
                 Town.performTownAction();
+                createInventoryActions();
                 break;
             case "store":
                 Town.performStoreAction();
+                createInventoryActions();
                 break;
             case "church":
                 Town.performChurchAction();
+                createInventoryActions();
                 break;
         }
     }

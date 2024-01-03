@@ -1,4 +1,4 @@
-import { playerHpText, goldText, playerDamageText, text, itemIcon, itemName, itemValue } from "./uiData.js";
+import { playerHpText, goldText, playerDamageText, text, itemIcon, itemName, itemValue, itemActions } from "./uiData.js";
 import player from "../script.js";
 import { Type } from "../data/itemData.js";
 const inventory = document.querySelector("#inventory")
@@ -60,6 +60,14 @@ const loadInfo = (div) => {
     //removeFromInventory(div.index);
 }
 
+const createInventoryActions = () => {
+    if (player.actualLocation.name == "store") {
+        itemActions[1].innerText = "Sell";
+    } else {
+        itemActions[1].innerText = "Discard";
+    }
+}
+
 const removeFromInventory = (item) => {
     player.inventory[item] = null
 }
@@ -89,4 +97,4 @@ const updateInventory = (result) => {
     updateBasicInfo(result.message)
 }
 
-export {updateBasicInfo, createInventory, updateInventory};
+export {updateBasicInfo, createInventory, updateInventory, createInventoryActions};
