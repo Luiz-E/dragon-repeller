@@ -1,4 +1,3 @@
-import { updateInventory } from "../ui/updatePlayerInfo.js";
 import { Type as ItemType, potions, armors, weapons } from "../data/itemData.js";
 
 class Player {
@@ -119,10 +118,6 @@ class Player {
         }
 
         
-    }
-
-    removeFromInventory(item) {
-        this.inventory[item] = null
     }
 
 }

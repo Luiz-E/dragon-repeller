@@ -34,7 +34,7 @@ const potions = [
 
 const armors = [
     new Item (
-        "lether armor",
+        "leather armor",
         Type.Armor,
         5,
     ),

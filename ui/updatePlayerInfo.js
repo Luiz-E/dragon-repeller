@@ -1,7 +1,8 @@
-import { playerHpText, goldText, playerDamageText, text } from "./uiData.js";
+import { playerHpText, goldText, playerDamageText, text, itemIcon, itemName, itemValue } from "./uiData.js";
 import player from "../script.js";
 import { Type } from "../data/itemData.js";
 const inventory = document.querySelector("#inventory")
+
 
 const updateBasicInfo = (message) => {
     playerHpText.innerText = player.health
@@ -16,24 +17,74 @@ const createInventory = () => {
         div.id = "inventory-space";
         div.index = i
         div.addEventListener("click", () => {
-            div.style.backgroundColor = "#fff";
-            player.removeFromInventory(div.index);
+            loadInfo(div)
         })
         inventory.appendChild(div);
     }
 }
 
+const loadInfo = (div) => {
+    if (div.firstChild == null) {
+        return
+    }
+
+    const item = player.inventory[div.index]
+
+    itemIcon.innerHTML = "";
+    itemName.innerText = "";
+    itemValue.innerText = "";
+    
+    const img = document.createElement("img")
+    img.src = `icons/${item.name}.png`
+    itemIcon.appendChild(img)
+
+    itemName.innerText = item.name.toUpperCase()
+
+    let valueMessage;
+
+    switch (item.type) {
+        case Type.Armor:
+            valueMessage = `Damage Ignored: ${item.value}%`
+            break;
+        case Type.Weapon:
+            valueMessage = `Damage: ${item.value}`
+            break;
+        case Type.Potion:
+            valueMessage = "Heal: " + item.value + " HP"
+            break;
+    }
+    
+    itemValue.innerText = valueMessage
+    
+    //div.innerHTML = "";
+    //removeFromInventory(div.index);
+}
+
+const removeFromInventory = (item) => {
+    player.inventory[item] = null
+}
+
 const updateInventory = (result) => {
     if (result.sucess) {
+        const itemIcon = document.createElement("img")
         const space = document.querySelectorAll("#inventory > div")[result.itemAdded.position];
-        console.log(space)
-        if (result.itemAdded.item.type == Type.Potion) {
-            space.style.backgroundColor = "green";
-        } else if (result.itemAdded.item.type == Type.Weapon) {
-            space.style.backgroundColor = "red";
-        } else {
-            space.style.backgroundColor = "blue"
+        
+        switch (result.itemAdded.item.type) {
+            case Type.Potion:
+                itemIcon.src = "icons/healing potion.png";
+                itemIcon.alt = "Potion icon";
+                break;
+            case Type.Weapon: 
+                itemIcon.src = "icons/stick.png";
+                itemIcon.alt = "Weapon icon";
+                break;
+            case Type.Armor:
+                itemIcon.src = "icons/leather armor.png";
+                itemIcon.alt = "Armor icon";
         }
+
+        space.appendChild(itemIcon)
+
     }
     updateBasicInfo(result.message)
 }
