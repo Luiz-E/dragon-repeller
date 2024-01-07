@@ -1,4 +1,4 @@
-import { playerHpText, goldText, playerDamageText, text, itemIcon, itemName, itemValue, itemActions } from "./uiData.js";
+import { playerHpText, goldText, playerDamageText, text, itemIcon, itemName, itemValue, itemActions, divItemActions, infoWindow } from "./uiData.js";
 import player from "../script.js";
 import { Type } from "../data/itemData.js";
 const inventory = document.querySelector("#inventory")
@@ -56,6 +56,9 @@ const loadInfo = (div) => {
     
     itemValue.innerText = valueMessage
     
+    infoWindow[1].style.display = "none";
+    infoWindow[0].style.display = "flex";
+
     //div.innerHTML = "";
     //removeFromInventory(div.index);
 }
@@ -66,6 +69,12 @@ const createInventoryActions = () => {
     } else {
         itemActions[1].innerText = "Discard";
     }
+
+    divItemActions.addEventListener("click", () => {
+        infoWindow[0].style.display = "none";
+        infoWindow[1].style.display = "flex";
+    })
+    
 }
 
 const removeFromInventory = (item) => {
@@ -83,11 +92,11 @@ const updateInventory = (result) => {
                 itemIcon.alt = "Potion icon";
                 break;
             case Type.Weapon: 
-                itemIcon.src = "icons/stick.png";
+                itemIcon.src = `icons/${result.itemAdded.item.name}.png`;
                 itemIcon.alt = "Weapon icon";
                 break;
             case Type.Armor:
-                itemIcon.src = "icons/leather armor.png";
+                itemIcon.src = `icons/${result.itemAdded.item.name}.png`;
                 itemIcon.alt = "Armor icon";
         }
 

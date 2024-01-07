@@ -12,6 +12,10 @@ class Player {
     isBlessed;
     inventory;
     actualLocation;
+    boughtWeapons;
+    boughtArmors;
+    equippedWeapon;
+    equippedArmor;
 
     constructor() {
         this.maxHealth = 100;
@@ -21,12 +25,16 @@ class Player {
         this.damageTaken = 1;
         this.level = 0;
         this.exp = 0;
-        this.isBlessed = false        
-        this.inventory = []
+        this.isBlessed = false;
+        this.inventory = [];
         for (let i = 0; i < 15; i++) {
             this.inventory[i] = null
         }
-        this.actualLocation = locations.find(loc => loc.name === "town")
+        this.actualLocation = locations.find(loc => loc.name === "town");
+        this.boughtWeapons = 0;
+        this.boughtArmors = 0;
+        this.equippedWeapon = null;
+        this.equippedArmor = null;
     }
 
     freeSpace() {
@@ -107,20 +115,34 @@ class Player {
                 position: freeSpace,
             };
         } else if (item == ItemType.Weapon) {
-            this.inventory[freeSpace] = weapons[0];
+            let weaponBought = weapons[this.boughtWeapons];
+            this.boughtWeapons = Math.min(++this.boughtWeapons, weapons.length-1)
+            this.inventory[freeSpace] = weaponBought;
             return {
-                item: weapons[0],
+                item: weaponBought,
                 position: freeSpace
             };
         } else {
-            this.inventory[freeSpace] = armors[0];
+            let armorBought = armors[this.boughtArmors];
+            this.boughtArmors = Math.min(++this.boughtArmors, armors.length-1);
+            this.inventory[freeSpace] = armorBought;
             return {
-                item: armors[0],
+                item: armorBought,
                 position: freeSpace
             };
         }
 
         
+    }
+
+    useItem(item) {
+        if (item.type == Type.Armor) {
+
+        } else if (item.type == Type.Weapon) {
+            
+        } else {
+            this.health += 30;
+        }
     }
 
 }
