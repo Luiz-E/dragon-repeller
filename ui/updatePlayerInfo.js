@@ -2,13 +2,14 @@ import { playerHpText, goldText, playerDamageText, text, itemIcon, itemName, ite
 import player from "../script.js";
 import { Type } from "../data/itemData.js";
 const inventory = document.querySelector("#inventory")
-
+let onDisplay = null
 
 const updateBasicInfo = (message) => {
     playerHpText.innerText = player.health
     goldText.innerText = player.gold
     playerDamageText.innerText = player.damage
     text.innerText = message;
+    console.log(player)
 }
 
 const createInventory = () => {
@@ -25,6 +26,8 @@ const createInventory = () => {
 
 const loadInfo = (div) => {
     if (div.firstChild == null) {
+        infoWindow[1].style.display = "flex";
+        infoWindow[0].style.display = "none";
         return
     }
 
@@ -58,7 +61,7 @@ const loadInfo = (div) => {
     
     infoWindow[1].style.display = "none";
     infoWindow[0].style.display = "flex";
-
+    onDisplay = {item, div}
     //div.innerHTML = "";
     //removeFromInventory(div.index);
 }
@@ -106,4 +109,11 @@ const updateInventory = (result) => {
     updateBasicInfo(result.message)
 }
 
-export {updateBasicInfo, createInventory, updateInventory, createInventoryActions};
+const configureInventoryActions = () => {
+    itemActions[0].addEventListener("click", () => {
+        player.useItem(onDisplay);
+        updateBasicInfo();
+    })
+}
+
+export {updateBasicInfo, createInventory, updateInventory, createInventoryActions, configureInventoryActions};

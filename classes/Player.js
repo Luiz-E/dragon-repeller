@@ -135,14 +135,25 @@ class Player {
         
     }
 
-    useItem(item) {
-        if (item.type == Type.Armor) {
+    useItem(onDisplay) {
+        
+        const item = onDisplay.item
+        const div = onDisplay.div
+
+        if (item.type == ItemType.Armor) {
             this.equippedArmor = item;
-        } else if (item.type == Type.Weapon) {
+            this.removeFromInventoy(div.index)
+        } else if (item.type == ItemType.Weapon) {
             this.equippedWeapon = item;
+            this.removeFromInventoy(div.index)
         } else {
             this.health = Math.min(this.maxHealth, health + 30);
+            this.removeFromInventoy(div.index)
         }
+    }
+
+    removeFromInventoy = (index) => {
+        this.inventory[index] = null
     }
 
 }
