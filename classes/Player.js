@@ -137,11 +137,11 @@ class Player {
 
     useItem(item) {
         if (item.type == Type.Armor) {
-
+            this.equippedArmor = item;
         } else if (item.type == Type.Weapon) {
-            
+            this.equippedWeapon = item;
         } else {
-            this.health += 30;
+            this.health = Math.min(this.maxHealth, health + 30);
         }
     }
 
