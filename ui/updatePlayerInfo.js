@@ -112,7 +112,7 @@ const updateInventory = (result) => {
 const configureInventoryActions = () => {
     itemActions[0].addEventListener("click", () => {
         player.useItem(onDisplay);
-        updateBasicInfo();
+        updateBasicInfo("");
     })
 }
 
