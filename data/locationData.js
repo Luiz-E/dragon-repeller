@@ -12,7 +12,7 @@ const locations = [
         [
             "store",
             "church",
-            "hunting grounds",
+            "hunting",
             "dragon nest"
         ],
         "You are in the town square."
@@ -40,12 +40,27 @@ const locations = [
             "Go to town square"
         ],
         [
-            "heal",
-            "strength",
-            "ironBody",
+            "",
+            "",
+            "",
             "town"
         ],
         "You are in the church."
+    ), new Location (
+        "hunting",
+        [
+            "Go to the forest",
+            "Go to the cave",
+            "Go to the desert",
+            "Go back to town"
+        ],
+        [
+            "forest",
+            "cave",
+            "desert",
+            "town"
+        ],
+        "You are in the hunting grounds."
     )
 ]
 

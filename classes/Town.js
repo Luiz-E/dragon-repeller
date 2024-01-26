@@ -33,13 +33,17 @@ class Town {
                 Town.performChurchAction();
                 createInventoryActions();
                 break;
+            case "hunting":
+                Town.performHuntingAction();
+                createInventoryActions();
+                break;
         }
     }
 
     static performTownAction() {
         actions[0].onclick = () => Town.changeScenery("store");
         actions[1].onclick = () => Town.changeScenery("church");
-        actions[2].onclick = () => console.log("hunting");
+        actions[2].onclick = () => Town.changeScenery("hunting");
         actions[3].onclick = () => console.log("dragon");
     }
 
@@ -72,6 +76,13 @@ class Town {
             const message = player.getBlessing("iron body")
             updateBasicInfo(message);
         };
+        actions[3].onclick = () => Town.changeScenery("town");
+    }
+
+    static performHuntingAction() {
+        actions[0].onclick = () => Town.changeScenery("forest");
+        actions[1].onclick = () => Town.changeScenery("cave");
+        actions[2].onclick = () => Town.changeScenery("desert");
         actions[3].onclick = () => Town.changeScenery("town");
     }
 
