@@ -3,6 +3,8 @@ import player from "../script.js"
 import {actions, text} from "../ui/uiData.js"
 import {createInventoryActions, updateBasicInfo, updateInventory} from "../ui/updatePlayerInfo.js"
 import {Type} from "../data/itemData.js"
+import Monster from "./Monster.js"
+import { monsterTypes } from "../data/monsterData.js"
 
 class Town {
     static changeScenery(nextLocation) {
@@ -37,6 +39,11 @@ class Town {
                 Town.performHuntingAction();
                 createInventoryActions();
                 break;
+            case "forest":
+                Town.performForestAction();
+                createInventoryActions();
+                break;
+            
         }
     }
 
@@ -86,6 +93,38 @@ class Town {
         actions[3].onclick = () => Town.changeScenery("town");
     }
 
+    static getRandomMonster() {
+        
+        let randomPosition = Math.floor(Math.random() * 3);
+
+        switch (randomPosition) {
+            case 0: 
+                return {
+                    "monster": new Monster(player.level, monsterTypes["forest monster"]["goblin"]),
+                    "type": "goblin"
+                };
+            case 1:
+                return  {
+                    "monster": new Monster(player.level, monsterTypes["forest monster"]["wolf"]),
+                    "type":"wolf"
+                }
+            case 2:
+                return {
+                    "monster": new Monster(player.level, monsterTypes["forest monster"]["orc"]),
+                    "type":"orc"
+                }
+        }       
+    }
+
+
+    static performForestAction() {
+        for (let i = 0; i < 3; i++) {
+            let {monster, type} = Town.getRandomMonster();
+            actions[i].innerText = "Fight " + type + "\nLevel: " + monster.level;
+            actions[i].onclick = () => Town.changeScenery("battle", monster);
+        }
+        actions[3].onclick = () => Town.changeScenery("town");
+    }
 }
 
 export default Town

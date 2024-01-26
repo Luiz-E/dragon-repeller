@@ -61,6 +61,21 @@ const locations = [
             "town"
         ],
         "You are in the hunting grounds."
+    ), new Location(
+        "forest",
+        [
+            "",
+            "",
+            "",
+            "Go back to town"
+        ],
+        [
+            "",
+            "",
+            "",
+            "town"
+        ],
+        "You search for monsters in the forest."
     )
 ]
 
